@@ -6,10 +6,7 @@
     align-items: center;
   }
 
-body{
-    background-image: linear-gradient(rgba(144, 169, 244, 0.477),rgba(144, 169, 244, 0.477)),url('/src/pictures/Background1.png');
-    background-size: cover;
-}
+
 
 t2 {
     font-size: 4em;

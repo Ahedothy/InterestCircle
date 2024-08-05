@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './login.css'
-import ReactDOM from 'react-dom/client'
+import '../css/login.css'
+
 
 var Islogin=0;
 
@@ -46,9 +46,3 @@ function SetLogin(){
     !Islogin;
     return ;
 }
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-      <Login />
-    </React.StrictMode>,
-  )
