@@ -1,35 +1,38 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
+import './index.css'
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return(
+        <> 
+        <div>
+            <nav class="navbar">
+                <div class="navbar-container">
+                    <ul class="navbar-title" ><img src="/src/pictures/title.png" width="30px"/> InterestCircle</ul>
+                    <ul class="navbar-menu">
+                        <li class="navbar-item"><a href="/index.html" class="navbar-link">Home</a></li>
+                        <li class="navbar-item"><a href="/login.html" class="navbar-link">Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div>
+        <h3>创建新的兴趣圈？<button class="nor" >点击创建</button></h3>
+        </div>
+        <div class="square">
+            <Circles />
+            <Circles />
+            <Circles />
+            <Circles />
+            <Circles />
+            <Circles />
+        </div>
+        </>
+    )
+}
+
+function Circles(){
+    return <button class="circle">Lucky Star</button>;
 }
 
 export default App

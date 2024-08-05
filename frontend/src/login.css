@@ -1,0 +1,41 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem;
+    text-align: center;
+    align-items: center;
+  }
+
+body{
+    background-image: linear-gradient(rgba(144, 169, 244, 0.477),rgba(144, 169, 244, 0.477)),url('/src/pictures/Background1.png');
+    background-size: cover;
+}
+
+t2 {
+    font-size: 4em;
+    line-height: 400%;
+    font-weight: bolder;
+  }
+
+t3 {
+    font-size:medium;
+    line-height: 175%;
+    font-weight: normal;
+}
+
+form{
+    padding-top: 10px;
+}
+
+.area{
+    color: black;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    width:fit-content;
+}
+
+button{
+    border-radius: 7px;
+}
