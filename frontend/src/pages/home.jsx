@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
+import '../App.css'
+import {BrowserRouter as Router,Routes,Route,Navigate,Link} from 'react-router-dom';
+import CreateCircle from '../components/createCircle';
+import Circles from '../components/circles';
 
 function Home() {
-
+    
     return(
         <> 
         <div>
-        <h3>创建新的兴趣圈？<button class="nor" >点击创建</button></h3>
+        <CreateCircle />
+        
         </div>
         <div class="square">
             <Circles />
@@ -20,7 +25,3 @@ function Home() {
 }
 
 export default Home
-
-function Circles(){
-    return <button class="circle">Lucky Star</button>;
-}

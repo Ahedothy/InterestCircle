@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import '../login.css'
 import '../App.css'
 
-var Islogin=0;
 
-function Login(){
+function Register(){
     const[username,setUsername]=useState('');
     const[password,setPassword]=useState('');
     
@@ -32,7 +31,7 @@ function Login(){
             </div>
             <form>
                <button class="nor" type="submit">
-                    <t3>Login</t3>
+                    <t3>Register</t3>
                 </button>
             </form>
         </div>
@@ -40,9 +39,4 @@ function Login(){
     )
 }
 
-export default Login;
-
-function SetLogin(){
-    !Islogin;
-    return ;
-}
+export default Register;

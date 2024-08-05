@@ -4,6 +4,7 @@ import './index.css'
 import {BrowserRouter as Router,Routes,Route,Navigate,Link} from 'react-router-dom';
 import Login from './pages/login';
 import Home from './pages/home';
+import Register from './pages/register';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
                 <Route path='/' element={<Home/>}/>
                 <Route path='/home' element={<Home/>}/>
                 <Route path='/login' element={<Login/>}/>
+                <Route path='/register' element={<Register/>}/>
             </Routes>
         <div>
             <nav class="navbar">
@@ -22,6 +24,7 @@ function App() {
                     <ul class="navbar-menu">
                         <li class="navbar-item"><Link to='/home'><button class="nor">Home</button></Link></li>
                         <li class="navbar-item"><Link to='/login'><button class="nor">Login</button></Link></li>
+                        <li class="navbar-item"><Link to='/register'><button class="nor">Register</button></Link></li>
                     </ul>
                 </div>
             </nav>
