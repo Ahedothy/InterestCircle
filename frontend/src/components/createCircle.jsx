@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import '../App.css'
 
-export default function CreateCircle(){
+export default function CreateCircle({addCircle}){
     const[name,setName]=useState('');
     const[intro,setIntro]=useState('');
+
+    const handleCreate =()=>{
+        if(name&&intro){
+            addCircle({name,intro});
+            setName('');
+            setIntro('');
+        }
+    }
 
     return(
         <>
         <div>
-        <h3>Create a new InterestCircle?</h3>
+        <h2>Create a new InterestCircle?</h2>
             <p>Name <input
                 type='text'
                 value={name}
@@ -17,7 +25,7 @@ export default function CreateCircle(){
                 type='text'
                 value={intro}
                 onChange={(e) => setIntro(e.currentTarget.value)}
-            /><button class="nor">Create</button></p>
+            /><button class="nor" onClick={handleCreate}>Create</button></p>
         </div>
         </>
     )

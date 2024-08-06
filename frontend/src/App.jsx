@@ -5,6 +5,7 @@ import {BrowserRouter as Router,Routes,Route,Navigate,Link} from 'react-router-d
 import Login from './pages/login';
 import Home from './pages/home';
 import Register from './pages/register';
+import Circle from './pages/circle';
 
 function App() {
 
@@ -16,7 +17,9 @@ function App() {
                 <Route path='/home' element={<Home/>}/>
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>
+                <Route path='/circle/:name' element={<Circle/>}/>
             </Routes>
+        
         <div>
             <nav class="navbar">
                 <div class="navbar-container">
