@@ -17,7 +17,7 @@ function App() {
                 <Route path='/home' element={<Home/>}/>
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>
-                <Route path='/circle/:name' element={<Circle/>}/>
+                <Route path='/circle/:id' element={<Circle/>}/>
             </Routes>
         
         <div>
@@ -27,7 +27,6 @@ function App() {
                     <ul class="navbar-menu">
                         <li class="navbar-item"><Link to='/home'><button class="nor">Home</button></Link></li>
                         <li class="navbar-item"><Link to='/login'><button class="nor">Login</button></Link></li>
-                        <li class="navbar-item"><Link to='/register'><button class="nor">Register</button></Link></li>
                     </ul>
                 </div>
             </nav>

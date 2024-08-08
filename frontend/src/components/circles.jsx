@@ -15,10 +15,10 @@ export default function Circles(){
         <> 
         <CreateCircle addCircle={addCircle} />
         <div class="square">
-        {circles.map((circle,index)=>(
+        {circles.map((circle)=>(
         <Link 
-            key={index} 
-            to={'/circle/${circle.name}'}>
+            key={circle.id} 
+            to={`/circle/${circle.id}`}>
             <button class="circle">{circle.name}</button>
         </Link>
         ))}

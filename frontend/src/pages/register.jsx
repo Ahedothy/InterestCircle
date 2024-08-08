@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
 import '../login.css'
 import '../App.css'
-
+import { register } from '../api/user.api';
+import { Link } from 'react-router-dom';
 
 function Register(){
     const[username,setUsername]=useState('');
     const[password,setPassword]=useState('');
     
+    const handleRegister = async()=>{
+        try {
+            const response = await register(username,password);
+            if(response.success){
+            alert('User registered successfully!');
+            }else{
+                alert('Username has already been used.');
+            }
+        } catch (error) {
+            alert('Registration failed!');
+        }
+
+    };
+
+
     return(
         <>
         <h1>Welcome to InterestCircle</h1>
@@ -30,9 +46,11 @@ function Register(){
                 />
             </div>
             <form>
-               <button class="nor" type="submit">
+                <Link to='/home'>
+                <button class="nor" type="submit" onClick={handleRegister}>
                     <t3>Register</t3>
                 </button>
+                </Link>
             </form>
         </div>
         </>
