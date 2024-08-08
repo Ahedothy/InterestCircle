@@ -1,22 +1,44 @@
-import React, { useState ,createContext} from 'react';
+import React, { useState ,createContext, useContext} from 'react';
 import '../login.css'
 import '../App.css'
 import { login } from '../api/user.api';
 import { Link } from 'react-router-dom';
 
-var Islogin=0;
+export const AuthContext = createContext();
 
+export const AuthProvider =({children})=>{
+    const[isLoggedIn,setIsLoggedIn]=useState(false);
+    const[username,setUsername]=useState('');
+
+    const login = (username) =>{
+        setIsLoggedIn(true);
+        setUsername(username);
+    }
+
+    const logout =()=>{
+        setIsLoggedIn(false);
+        setUsername('');
+    }
+    return(
+        <AuthContext.Provider value={{isLoggedIn,username,login,logout}}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
 
 
 function Login(){
     const[username,setUsername]=useState('');
     const[password,setPassword]=useState('');
+    const{login:authLogin}=useContext(AuthContext);
+
     const handleLogin = async()=>{
         try {
             const response = await login(username,password);
             if(response.success){
-            alert('User logined successfully!');
-            Islogin=1;
+                authLogin(username);
+            alert('User loggedin successfully!');
+            
             }else{
                 alert('Username has already been used.');
             }
