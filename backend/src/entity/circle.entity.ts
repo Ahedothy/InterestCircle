@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, OneToMany } from 'typeorm';
+import { User } from './user.entity';
+import { Post } from './post.entity';
 
 @Entity()
 export class InterestCircle {
@@ -10,4 +12,10 @@ export class InterestCircle {
 
   @Column()
   intro: string;
+
+  @ManyToMany(()=>User,user=>user.circles)
+  users:User[];
+
+  @OneToMany(()=>Post,post=>post.circle)
+  posts:Post[];
 }

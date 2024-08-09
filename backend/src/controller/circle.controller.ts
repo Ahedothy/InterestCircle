@@ -22,4 +22,19 @@ export class CircleController{
     async getCircle(@Param('id') id:number){
         return await this.circleService.getCircle(id);
     }
+
+    @Post('/join')
+    async joinCircle(@Body() body:{username:string;id:number}){
+        return await this.circleService.joinCircle(body.username,body.id);
+    }
+
+    @Post('/:id/post')
+    async createPost(@Param('id') id:number,@Body() body:{username:string;title:string;content:string}){
+        return await this.circleService.createPost(id,body.username,body.title,body.content);
+    }
+
+    @Get('/:id/posts')
+    async getPosts(@Param('id') id:number){
+        return await this.circleService.getPosts(id);
+    }
 }

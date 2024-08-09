@@ -6,6 +6,7 @@ import Login from './pages/login';
 import Home from './pages/home';
 import Register from './pages/register';
 import Circle from './pages/circle';
+import Post from './pages/post';
 import { AuthProvider,AuthContext } from './pages/login';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>
                 <Route path='/circle/:id' element={<Circle/>}/>
+                <Route path='/circle/:id/post/:postid' element={<Post/>}/>
             </Routes>
         </Router>
         </AuthProvider>

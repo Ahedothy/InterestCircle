@@ -20,6 +20,7 @@
   border-radius: 10px;
   padding: 20px 20px;
   margin-top: 30px;
+  min-height: 150px;
 }
 
 .circle{

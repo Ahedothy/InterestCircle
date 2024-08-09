@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import '../App.css'
 import {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import Posts from '../components/posts';
 import axios from 'axios';
+import { AuthContext } from '../pages/login';
 
 function Circle() {
+    const{isLoggedIn,username,logout}=React.useContext(AuthContext);
     const{id}=useParams();
-    console.log('id:',id);
     const[circle,setCircle]=useState('');
+    const[posts,setPosts] = useState([]);
 
     const getCircle = async () => {
         try {
@@ -20,19 +21,64 @@ function Circle() {
         }
       };
 
+    const getPosts = async()=>{
+        const response = await axios.get(`http://localhost:7001/api/circle/${id}/posts`,id);
+        setPosts(response.data);
+    }
+
     useEffect(()=>{    
         getCircle();
+        getPosts();
     },[id]);
+
+
+    const[title,setTitle]=useState('');
+    const[content,setContent]=useState('');
+
+    const handleJoinCircle = async()=>{
+        const response = await axios.post('http://localhost:7001/api/circle/join',{username,id});
+        console.log(username,'join circle',id);
+    }
+
+    const handlePost=async()=>{
+        if(!isLoggedIn){
+            alert('You have to login before post.');
+        }else{
+        const response = await axios.post(`http://localhost:7001/api/circle/${id}/post`,{id,username,title,content});
+        setTitle('');
+        setContent('');
+        getPosts();
+        }
+    }
 
     return(
         <> 
         <div>
             <h2>{circle.name}</h2>
             <p>{circle.intro}</p>
+            <button class='nor' onClick={handleJoinCircle}>Join</button>
         </div>
         <div class="square2">
-            <Posts />
-            
+            <p>title <input
+            style={{marginRight:'20px'}}
+                type='text'
+                value={title}
+                onChange={(e)=>setTitle(e.currentTarget.value)}/></p>
+            <textarea
+                style={{width:'90%',height:'100px',resize:'none'}}
+                type='text'
+                value={content}
+                onChange={(e)=>setContent(e.currentTarget.value)}/>
+            <button class="nor" onClick={handlePost}>Post</button>
+        </div>
+        <div class="square2">
+            {posts.map(post=>(
+                <Link 
+                    key = {post.id}
+                    to={`/circle/${circle.id}/post/${post.id}`}>
+                        <button class="post">{post.title}</button>
+                    </Link>
+            ))}
         </div>
         </>
     )

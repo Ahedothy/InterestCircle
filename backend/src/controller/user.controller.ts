@@ -22,4 +22,5 @@ export class UserController {
     const result = await this.userService.login(user.username,user.password);
     this.ctx.body = result;
   }
+
 }
