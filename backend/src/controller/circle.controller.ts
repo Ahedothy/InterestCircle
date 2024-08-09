@@ -1,24 +1,25 @@
-/*import { Controller,Post,Get,Provide,Inject,Body,Param } from "@midwayjs/core";
-import { Context } from "@midwayjs/koa";
+import {Provide, Controller,Post,Get,Body,Param,Inject } from "@midwayjs/core";
 import{CircleService} from '../service/circle.service';
+
 @Provide()
 @Controller('/api/circle')
 export class CircleController{
-    @Inject()
-    ctx:Context;
 
     @Inject()
     circleService:CircleService;
 
-    @Post('/')
-    async createCircle(@Body() circleData:{name:string;intro:string}){
-        const result = await this.circleService.createCircle(circleData);
-        this.ctx.body ={success:true,data:result};
+    @Post('/create')
+    async createCircle(@Body() circle:{name:string;intro:string}){
+        return await this.circleService.createCircle(circle.name, circle.intro);
+    }
+
+    @Get('/circles')
+    async getCircles(){
+        return await this.circleService.getCircles();
     }
 
     @Get('/:id')
-    async getCircle(@Param('id') id:string){
-        const result = await this.circleService.getCircle(id);
-        this.ctx.body ={success:true,data:result};
+    async getCircle(@Param('id') id:number){
+        return await this.circleService.getCircle(id);
     }
-}*/
+}

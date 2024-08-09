@@ -40,7 +40,7 @@ function Login(){
             alert('User loggedin successfully!');
             
             }else{
-                alert('Username has already been used.');
+                alert('Username or password is wrong.');
             }
         } catch (error) {
             alert('Login failed!');

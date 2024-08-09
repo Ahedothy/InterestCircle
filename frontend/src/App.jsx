@@ -39,7 +39,10 @@ const Navbar =()=>{
                         <li class="navbar-item"><Link to='/home'><button class="nor">Home</button></Link></li>
                         {isLoggedIn ? (
                             <li className="navbar-item"><button className="nor" onClick={logout}>{username} Logout</button></li>
-                        ):(<li class="navbar-item"><Link to='/login'><button class="nor">Login</button></Link></li>)}
+                        ):(<>
+                            <li class="navbar-item"><Link to='/login'><button class="nor">Login</button></Link></li>
+                            <li class="navbar-item"><Link to='/register'><button class="nor">Register</button></Link></li>
+                        </>)}
                     </ul>
                 </div>
             </nav>

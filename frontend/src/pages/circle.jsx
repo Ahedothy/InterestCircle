@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css'
-import {useParams,useLocation} from 'react-router-dom';
-import {BrowserRouter as Router,Routes,Route,Navigate,Link} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Posts from '../components/posts';
-import { getCircle } from '../api/circle.api';
+import axios from 'axios';
 
 function Circle() {
     const{id}=useParams();
-    const[circle,setCircle]=useState(null);
+    console.log('id:',id);
+    const[circle,setCircle]=useState('');
 
-    useEffect(()=>{
-        const fetchCircle = async()=>{
-            const result = await getCircle(id);
-            setCircle(result.data);
-        };
-        fetchCircle();
+    const getCircle = async () => {
+        try {
+          const response = await axios.get(`http://localhost:7001/api/circle/${id}`,id);
+          setCircle(response.data);
+          console.log(response.data); 
+        } catch (error) {
+          console.error('Error fetching circles:', error);
+        }
+      };
+
+    useEffect(()=>{    
+        getCircle();
     },[id]);
 
     return(

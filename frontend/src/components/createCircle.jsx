@@ -2,24 +2,15 @@ import React, { useState } from "react";
 import '../App.css'
 import { createCircle } from "../api/circle.api";
 
-export default function CreateCircle({addCircle}){
+export default function CreateCircle({getCircles}){
     const[name,setName]=useState('');
     const[intro,setIntro]=useState('');
 
-    const[circle,setCircle]=useState({name:'',intro:''});
-    const[circleId,setCircleId]=useState('');
-    const[fetchedCircle,setFetchedCircle]=useState(null);
-
-    
     const handleCreate =async()=>{
-        if(name&&intro){
-            addCircle({name,intro});
-            setCircle({...circle,[name]:name,[intro]:intro})
-            const result = await createCircle(circle);
-            setFetchedCircle(result.data);
-            setName('');
-            setIntro('');
-        }
+        const response = await createCircle(name,intro);
+        getCircles();
+        setName('');
+        setIntro('');
     }
 
     return(

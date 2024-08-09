@@ -11,11 +11,11 @@ export class UserController {
   @Inject()
   userService: UserService;
 
-  /*@Post('/register')
+  @Post('/register')
   async register(@Body() user:{username:string,password:string}) {
     const result = await this.userService.register(user.username,user.password);
     this.ctx.body = result;
-  }*/
+  }
 
   @Post('/login')
   async login(@Body() user:{username:string,password:string}) {
