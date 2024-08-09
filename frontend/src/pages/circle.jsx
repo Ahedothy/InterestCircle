@@ -10,6 +10,7 @@ function Circle() {
     const{id}=useParams();
     const[circle,setCircle]=useState('');
     const[posts,setPosts] = useState([]);
+    const[isJoined,setIsJoined]=useState(false);
 
     const getCircle = async () => {
         try {
@@ -26,23 +27,39 @@ function Circle() {
         setPosts(response.data);
     }
 
+    const getIfJoined = async()=>{
+        if(isLoggedIn){
+            const response = await axios.get(`http://localhost:7001/api/circle/${id}/isjoined`,{params:{username}});
+            if(response.data)
+            setIsJoined(true);
+        }
+    }
+
     useEffect(()=>{    
         getCircle();
         getPosts();
-    },[id]);
+        getIfJoined();
+    },[id,isLoggedIn]);
 
 
     const[title,setTitle]=useState('');
     const[content,setContent]=useState('');
 
     const handleJoinCircle = async()=>{
+        if(!isLoggedIn){
+            alert('You have to login before join circle.');
+        }else{
         const response = await axios.post('http://localhost:7001/api/circle/join',{username,id});
+        setIsJoined(true);
         console.log(username,'join circle',id);
+        }
     }
 
     const handlePost=async()=>{
         if(!isLoggedIn){
             alert('You have to login before post.');
+        }else if(!isJoined){
+            alert('You have to join circle before post.');
         }else{
         const response = await axios.post(`http://localhost:7001/api/circle/${id}/post`,{id,username,title,content});
         setTitle('');
@@ -50,13 +67,14 @@ function Circle() {
         getPosts();
         }
     }
-
+    
     return(
         <> 
         <div>
             <h2>{circle.name}</h2>
             <p>{circle.intro}</p>
-            <button class='nor' onClick={handleJoinCircle}>Join</button>
+            {isJoined ? (<button class='nor'>Joined</button>):
+            (<button class='nor' onClick={handleJoinCircle}>Join</button>)}
         </div>
         <div class="square2">
             <p>title <input

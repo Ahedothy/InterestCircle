@@ -53,4 +53,15 @@ export class CircleService{
         const circle = await this.circleModel.findOneBy({id});
         return await this.postModel.find({where:{circle}});
     }
+
+    async getIfJoined(id:number,username:string){
+        console.log(id,username);
+        const user = await this.userModel.findOne({where:{username:username},relations:['circles']});
+        if(!user){
+            return false;
+        }
+        const isjoined = user.circles.some(circle => circle.id === id);
+        console.log(isjoined,user);
+        return isjoined;
+    }
 }

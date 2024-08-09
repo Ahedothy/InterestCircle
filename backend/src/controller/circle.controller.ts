@@ -1,4 +1,4 @@
-import {Provide, Controller,Post,Get,Body,Param,Inject } from "@midwayjs/core";
+import {Provide, Controller,Post,Get,Body,Param,Inject, Query } from "@midwayjs/core";
 import{CircleService} from '../service/circle.service';
 
 @Provide()
@@ -36,5 +36,10 @@ export class CircleController{
     @Get('/:id/posts')
     async getPosts(@Param('id') id:number){
         return await this.circleService.getPosts(id);
+    }
+
+    @Get('/:id/isjoined')
+    async getIfJoined(@Param('id') id:number,@Query('username') username:string){
+        return await this.circleService.getIfJoined(id,username);
     }
 }
