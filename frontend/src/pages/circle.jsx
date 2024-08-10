@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../pages/login';
+import CircleActivity from '../components/circleActivity';
 
 function Circle() {
     const{isLoggedIn,username,logout}=React.useContext(AuthContext);
@@ -76,6 +77,8 @@ function Circle() {
             {isJoined ? (<button class='nor'>Joined</button>):
             (<button class='nor' onClick={handleJoinCircle}>Join</button>)}
         </div>
+        <div class='container'>
+        <div class='leftpanel'>
         <div class="square2">
             <p>title <input
             style={{marginRight:'20px'}}
@@ -99,6 +102,11 @@ function Circle() {
                     </Link>
             ))}
             </div>
+        </div>
+        </div>
+        <div class="rightpanel">
+        <CircleActivity id={id} />
+        </div>
         </div>
         </>
     )

@@ -64,4 +64,27 @@ export class CircleService{
         console.log(isjoined,user);
         return isjoined;
     }
+
+    async getActivity(id:number){
+        const members = await this.userModel
+        .createQueryBuilder('user')
+        .innerJoin('user.circles','circle')
+        .where('circle.id = :id',{id})
+        .getMany();
+
+        const activityData=await this.postModel
+        .createQueryBuilder('post')
+        .select('post.user.id AS userid,COUNT(post.id) as postCount')
+        .where('post.circle.id = :id',{id})
+        .groupBy('post.user.id')
+        .getRawMany();
+
+        return members.map(member=>{
+            const activity=activityData.find(a=>a.userid===member.id)||{postCount:0};
+            return{
+                username:member.username,
+                postCount:activity.postCount,
+            };
+        });
+    }
 }

@@ -4,7 +4,15 @@
   padding: 2rem;
 }
 
-
+.container{
+  display: flex;
+}
+.leftpanel{
+  flex:3;
+}
+.rightpanel{
+  flex:1
+}
 .square{
   width: 95%;
   background-color: rgba(240, 248, 255, 0.88);
@@ -15,7 +23,16 @@
 }
 
 .square2{
-  width: 75%;
+  width: 90%;
+  background-color: rgba(240, 248, 255, 0.88);
+  border-radius: 10px;
+  padding: 20px 20px;
+  margin-top: 30px;
+  min-height: 150px;
+}
+
+.square3{
+  width: 90%;
   background-color: rgba(240, 248, 255, 0.88);
   border-radius: 10px;
   padding: 20px 20px;

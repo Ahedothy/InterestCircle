@@ -42,4 +42,9 @@ export class CircleController{
     async getIfJoined(@Param('id') id:number,@Query('username') username:string){
         return await this.circleService.getIfJoined(id,username);
     }
+
+    @Get('/:id/activity')
+    async getActivity(@Param('id') id:number){
+        return await this.circleService.getActivity(id);
+    }
 }
