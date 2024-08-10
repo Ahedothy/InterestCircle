@@ -17,7 +17,8 @@ a:hover {
 
 body {
   background-image: linear-gradient(rgba(144, 169, 244, 0.477),rgba(144, 169, 244, 0.477)),url('/src/pictures/Background1.png');
-  background-size: cover;
+  background-size:cover;
+  background-position: center;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;

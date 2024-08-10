@@ -22,6 +22,7 @@ export default function CreateCircle({getCircles}){
                 value={name}
                 onChange={(e) => setName(e.currentTarget.value)}
             />Intro <input
+            style={{width:'300px'}}
                 type='text'
                 value={intro}
                 onChange={(e) => setIntro(e.currentTarget.value)}

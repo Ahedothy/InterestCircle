@@ -2,6 +2,7 @@ import { MidwayConfig } from '@midwayjs/core';
 import { InterestCircle } from '../entity/circle.entity';
 import { User } from '../entity/user.entity';
 import { Post } from '../entity/post.entity';
+import { Comment } from '../entity/comment.entity';
 
 export default {
   // use for cookie sign key, should change to your own and keep security
@@ -23,7 +24,7 @@ export default {
         database:'mydatabase',
         synchronize:true,
         logging:false,
-        entities:[InterestCircle,User,Post]
+        entities:[InterestCircle,User,Post,Comment]
       }
     }
   }

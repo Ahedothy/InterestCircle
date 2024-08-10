@@ -83,13 +83,14 @@ function Circle() {
                 value={title}
                 onChange={(e)=>setTitle(e.currentTarget.value)}/></p>
             <textarea
-                style={{width:'90%',height:'100px',resize:'none'}}
+                style={{width:'90%',height:'100px',resize:'none',marginBottom:'10px'}}
                 type='text'
                 value={content}
                 onChange={(e)=>setContent(e.currentTarget.value)}/>
             <button class="nor" onClick={handlePost}>Post</button>
         </div>
-        <div class="square2">
+        <div class="square2">    
+            <div>
             {posts.map(post=>(
                 <Link 
                     key = {post.id}
@@ -97,6 +98,7 @@ function Circle() {
                         <button class="post">{post.title}</button>
                     </Link>
             ))}
+            </div>
         </div>
         </>
     )
