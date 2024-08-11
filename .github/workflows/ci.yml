@@ -1,0 +1,52 @@
+name: CI Workflow
+
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.15.0'
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm install
+
+      - name: Install backend dependencies
+        working-directory: backend 
+        run: npm install 
+
+      - name: Set up MySQL
+        uses: docker://mysql:8.0.37
+        
+      - name: Login to MySQL
+        run: |
+           echo "${{ secrets.DB_PASSWORD }}" | mysql -u root -p
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      
+      - name: Start MySQL service
+        run: |
+          net start mysql80
+  
+      - name: Run frontend
+        working-directory: frontend
+        run: npm run dev
+
+      - name: Run backend
+        working-directory: backend
+        run: npm run dev 
