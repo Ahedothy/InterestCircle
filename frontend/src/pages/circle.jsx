@@ -45,6 +45,11 @@ function Circle() {
 
     const[title,setTitle]=useState('');
     const[content,setContent]=useState('');
+    const[image,setImage]=useState(null);
+
+    const handleImageChange=(e)=>{
+        setImage(e.target.files[0]);
+    }
 
     const handleJoinCircle = async()=>{
         if(!isLoggedIn){
@@ -62,7 +67,13 @@ function Circle() {
         }else if(!isJoined){
             alert('You have to join circle before post.');
         }else{
-        const response = await axios.post(`http://localhost:7001/api/circle/${id}/post`,{id,username,title,content});
+            const data = new FormData();
+            data.append('username',username);
+            data.append('title',title);
+            data.append('content',content);
+            data.append('image',image);
+            console.log(data.get('username'),data.get('title'),data.get('content'),data.get('image'));
+        const response = await axios.post(`http://localhost:7001/api/circle/${id}/post`,data);
         setTitle('');
         setContent('');
         getPosts();
@@ -90,7 +101,8 @@ function Circle() {
                 type='text'
                 value={content}
                 onChange={(e)=>setContent(e.currentTarget.value)}/>
-            <button class="nor" onClick={handlePost}>Post</button>
+            <p>Add Picture<input type='file' onChange={handleImageChange}/>
+            <button class="nor" onClick={handlePost}>Post</button></p>
         </div>
         <div class="square2">    
             <div>

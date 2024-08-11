@@ -8,6 +8,7 @@ import { join } from 'path';
 import { ReportMiddleware } from './middleware/report.middleware';
 import * as crossDomain from '@midwayjs/cross-domain'
 import * as orm from '@midwayjs/typeorm';
+import * as upload from '@midwayjs/upload'
 
 @Configuration({
   imports: [
@@ -19,6 +20,7 @@ import * as orm from '@midwayjs/typeorm';
       component: info,
       enabledEnvironment: ['local'],
     },
+    upload,
   ],
   importConfigs: [join(__dirname, './config')],
 })

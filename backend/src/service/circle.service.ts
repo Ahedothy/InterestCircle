@@ -40,13 +40,14 @@ export class CircleService{
         return {success:true,message:'join circle successfully'};
     }
 
-    async createPost(id:number,username:string,title:string,content:string){
+    async createPost(id:number,username:string,title:string,content:string,imageUrl:string){
+        console.log(imageUrl);
         const user = await this.userModel.findOne({where:{username:username},relations:['circles']});
         const circle = await this.circleModel.findOne({where:{id:id}});
-        const post = this.postModel.create({title,content,user,circle});
+        const post = this.postModel.create({title,content,imageUrl,user,circle});
         await this.postModel.save(post);
         console.log(username,'posted',title,'in circle',circle.name);
-        return{success:true,message:'post successfully'};
+        return{success:true,message:'post successfully',imageUrl};
     }
 
     async getPosts(id:number){

@@ -41,11 +41,13 @@ export default function Post(){
         getComments();
     },[postid]);
 
+    console.log(post.imageUrl);
     return(
         <>
         <h2>{post.title}</h2>
         <div class='square'>
         <p>{post.content}</p>
+        {post.imageUrl &&<img src={post.imageUrl} width='50%' alt="post picture"/>}
             <p>Posted by: {postbyname}</p>
         </div>
         <div class='square'>

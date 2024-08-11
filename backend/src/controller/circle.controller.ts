@@ -1,5 +1,7 @@
-import {Provide, Controller,Post,Get,Body,Param,Inject, Query } from "@midwayjs/core";
+import {Provide, Controller,Post,Get,Body,Param,Inject, Query,File, Fields } from "@midwayjs/core";
 import{CircleService} from '../service/circle.service';
+import { join } from "path";
+import { promises } from 'fs';
 
 @Provide()
 @Controller('/api/circle')
@@ -29,8 +31,21 @@ export class CircleController{
     }
 
     @Post('/:id/post')
-    async createPost(@Param('id') id:number,@Body() body:{username:string;title:string;content:string}){
-        return await this.circleService.createPost(id,body.username,body.title,body.content);
+    async createPost(
+        @Param('id') id:number,
+        @Fields() body: any,
+        @File('image') image:any){
+        console.log(body);
+        console.log(image);
+        var imageUrl=null;
+        if(image){
+        const targetDir=join(__dirname,'..','..','..','frontend','public','uploads');
+        const targetPath=join(targetDir,image.filename);
+        await promises.rename(image.data,targetPath);
+        imageUrl = `/uploads/${image.filename}`;
+        console.log(imageUrl);
+        }
+        return await this.circleService.createPost(id,body.username,body.title,body.content,imageUrl);
     }
 
     @Get('/:id/posts')
@@ -48,3 +63,4 @@ export class CircleController{
         return await this.circleService.getActivity(id);
     }
 }
+
