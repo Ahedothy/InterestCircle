@@ -23,10 +23,8 @@ jobs:
           node-version: '20.15.0'
 
       - name: Set up MySQL
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y mysql-server
-          sudo service mysql start
+        uses: docker://mysql:8.0.37
+        
         
       - name: Login to MySQL
         run: |
