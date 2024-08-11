@@ -21,6 +21,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '20.15.0'
+
+      - name: Set up MySQL
+        uses: mysql/setup-mysql@v2
+        with:
+          mysql-version: '8.0.37'
+          mysql-port: 3306
+        
       - name: Login to MySQL
         run: |
            echo "${{ secrets.DB_PASSWORD }}" | mysql -u root -p
