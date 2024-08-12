@@ -39,7 +39,7 @@ export class CircleController{
         console.log(image);
         var imageUrl=null;
         if(image){
-        const targetDir=join(__dirname,'..','..','..','frontend','public','uploads');
+        const targetDir=join(__dirname,'..','..','..','frontend','dist','uploads');
         const targetPath=join(targetDir,image.filename);
         await promises.rename(image.data,targetPath);
         imageUrl = `/uploads/${image.filename}`;

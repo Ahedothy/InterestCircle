@@ -36,7 +36,7 @@ const Navbar =()=>{
         <div>
             <nav class="navbar">
                 <div class="navbar-container">
-                    <ul class="navbar-title" ><img src="/src/pictures/title.png" width="30px"/> InterestCircle</ul>
+                    <ul class="navbar-title" ><img src="/assets/title.png" width="30px"/> InterestCircle</ul>
                     <ul class="navbar-menu">
                         <li class="navbar-item"><Link to='/home'><button class="nor">Home</button></Link></li>
                         {isLoggedIn ? (
