@@ -40,8 +40,8 @@ jobs:
         
       - name: Run frontend
         working-directory: frontend
-        run: npm start
+        run: npm test
 
       - name: Run backend
         working-directory: backend
-        run: npm start 
+        run: npm test 
